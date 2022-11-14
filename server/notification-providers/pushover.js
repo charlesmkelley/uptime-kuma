@@ -10,7 +10,7 @@ class Pushover extends NotificationProvider {
         let pushoverlink = "https://api.pushover.net/1/messages.json";
 
         let data = {
-            "message": "<b>Uptime Kuma Alert</b>\n\n<b>Message</b>:" + msg,
+            "message": msg,
             "user": notification.pushoveruserkey,
             "token": notification.pushoverapptoken,
             "sound": notification.pushoversounds,
@@ -30,7 +30,7 @@ class Pushover extends NotificationProvider {
                 await axios.post(pushoverlink, data);
                 return okMsg;
             } else {
-                data.message += "\n<b>Time (UTC)</b>:" + heartbeatJSON["time"];
+                data.message += "\n" + heartbeatJSON["time"];
                 await axios.post(pushoverlink, data);
                 return okMsg;
             }
